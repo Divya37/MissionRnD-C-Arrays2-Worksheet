@@ -15,13 +15,51 @@ NOTES:
 */
 
 #include <iostream>
+#include<stdlib.h>
 
 struct transaction {
 	int amount;
 	char date[11];
 	char description[20];
 };
+int compare(char *string1, char *string2)	//comparing two strings
+{
+	int i = 0, flag = 0;
 
-struct transaction * sortedArraysCommonElements(struct transaction *A, int ALen, struct transaction *B, int BLen) {
-	return NULL;
+	while (string1[i] != '\0' && string2[i] != '\0')
+	{
+		if (string1[i] != string2[i])
+		{
+			flag = 1;
+			break;
+		}
+		i++;
+	}
+	return flag;
+}
+
+struct transaction* sortedArraysCommonElements(struct transaction *A, int ALen, struct transaction *B, int BLen)
+{
+	int i, j, size = 0;
+	struct transaction *result;
+	if (A == NULL || B == NULL)
+		return NULL;
+	result = (struct transaction *)malloc(sizeof(struct transaction)*((ALen>BLen) ? ALen : BLen));
+
+	for (i = 0; i < ALen; i++)
+	{
+		for (j = 0; j < BLen; j++)
+		{
+			if (compare(A[i].date, B[j].date) == 0)
+			{
+				//result = (struct transaction *)malloc(sizeof(struct transaction));
+				result[size++] = A[i];
+				break;
+			}
+		}
+	}
+	if (size)
+		return result;
+	else
+		return NULL;
 }

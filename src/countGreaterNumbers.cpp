@@ -37,7 +37,7 @@ int countGreaterNumbers(struct transaction *Arr, int len, char *date)
 			{
 				temp_count = 0;
 				
-				for (j = 3; j<5; j++)
+				for (j = 3; j<5; j++)//month check
 				{
 					if (Arr[i].date[j] == date[j])
 						temp_count++;
@@ -47,7 +47,7 @@ int countGreaterNumbers(struct transaction *Arr, int len, char *date)
 				if (temp_count == 2)
 				{
 					temp_count = 0;
-					for (j = 0; j<2; j++)
+					for (j = 0; j<2; j++)//day check
 					{
 						if (Arr[i].date[j] == date[j])
 							temp_count++;
