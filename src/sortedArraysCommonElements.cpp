@@ -22,6 +22,7 @@ struct transaction {
 	char date[11];
 	char description[20];
 };
+
 int compare(char *string1, char *string2)	//comparing two strings
 {
 	int i = 0, flag = 0;
@@ -50,10 +51,9 @@ struct transaction* sortedArraysCommonElements(struct transaction *A, int ALen, 
 	{
 		for (j = 0; j < BLen; j++)
 		{
-			if (compare(A[i].date, B[j].date) == 0)
+			if (compare(A[i].date,B[i].date)==0)
 			{
-				//result = (struct transaction *)malloc(sizeof(struct transaction));
-				result[size++] = A[i];
+				result[size++] = A[i];	
 				break;
 			}
 		}

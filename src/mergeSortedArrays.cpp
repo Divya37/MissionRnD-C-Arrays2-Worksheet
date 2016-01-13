@@ -14,13 +14,59 @@ NOTES:
 */
 
 #include <iostream>
-
+#include<stdlib.h>
 struct transaction {
 	int amount;
 	char date[11];
 	char description[20];
 };
+int len(char *str)
+{
+	int i;
+	for (i = 0; str[i] != '\0'; i++);
+	return i;
+}
 
 struct transaction * mergeSortedArrays(struct transaction *A, int ALen, struct transaction *B, int BLen) {
-	return NULL;
+		int i, j, size = 0, temp = 0;
+		struct transaction *output;
+		if (A == NULL || B == NULL)
+			return NULL;
+		output = (struct transaction*)malloc(sizeof(struct transaction)*(ALen + BLen));
+		i = j = 0;
+		while (i<ALen && j<BLen)
+		{
+			if (A[i].amount<B[j].amount)
+			{
+				output[size++] = A[i];
+				i++;
+			}
+			else
+			{
+				output[size++] = B[j];
+				j++;
+			}
+			if (A[i].amount == B[j].amount)
+			{
+				output[size++] = A[i];
+				output[size++] = B[j];
+				i++;
+				j++;
+			}
+		}
+		while (i < ALen)
+		{
+			output[size++] = A[i];
+			i++;
+		}
+		while (j < BLen)
+		{
+			output[size++] = B[j];
+			j++;
+		}
+		if (size)
+			return output;
+		else
+			return NULL;
+
 }
